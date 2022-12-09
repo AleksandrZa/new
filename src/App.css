@@ -1,5 +1,7 @@
 .App {
+  margin: 0 auto;
   text-align: center;
+  width: 800px;
 }
 
 .App-logo {
@@ -35,4 +37,33 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.wrapper {
+  margin-top: 100px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.content {
+  width: 150px;
+}
+
+.timer {
+  position: absolute;
+  margin-top: -35px ;
+  padding-top:6px; 
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgba(227, 98, 98, 0.543);
+}
+
+.timer img {
+  position: absolute;
+  width: 15px;
+  right: 8px;
+  top: 10px;
+  opacity: .7;
 }

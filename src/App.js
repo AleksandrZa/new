@@ -1,23 +1,44 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import Timer from './components/Timer';
 
 function App() {
+  const [activeUser, setActiveUser] = useState(0);
+  const users = ['AAA', 'BBB', 'XXX', 'FFF', 'SSS'];
+  let id;
+
+  const timerId = () => {
+    id = setInterval(() => {
+      setActiveUser((activeUser) => activeUser + 1);
+    }, 120000);
+
+    if (activeUser > users.length - 1) {
+      setActiveUser(0);
+    }
+  };
+
+  useEffect(() => {
+    timerId();
+    return () => clearInterval(id);
+  }, [activeUser]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="wrapper">
+        {users.map((item, i) => (
+          <div key={item} className="content">
+            {activeUser === i ? (
+              <div className="timer">
+                <Timer />
+                <img src="https://cdn-icons-png.flaticon.com/128/483/483610.png" alt="time" />
+              </div>
+            ) : (
+              ''
+            )}
+            {item}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
